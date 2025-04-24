@@ -1,0 +1,42 @@
+.navigation .navigation-title {
+    text-decoration: unset !important;
+    text-transform: unset !important;
+}
+
+// Dark mode
+body.colorscheme-dark .navigation a:hover {
+    color: #C0C5CE !important;
+}
+
+body.colorscheme-dark .content a.external-link {
+    color: #B48EAD !important;
+}
+
+body.colorscheme-dark .content a.external-link:hover {
+    color: #96B5B4 !important;
+}
+
+body.colorscheme-dark .content a:hover {
+    color: #B48EAD !important;
+}
+
+body.colorscheme-dark .footer a {
+    color: #65737E;
+}
+
+// Ligh mode
+body.colorscheme-light .navigation a {
+    color: #2B303B;
+}
+
+body.colorscheme-light .content a {
+    color: #2B303B !important;
+}
+
+body.colorscheme-light .content a:hover {
+    color: #B48EAD !important;
+}
+
+body.colorscheme-light .footer a {
+    color: #65737E;
+}
