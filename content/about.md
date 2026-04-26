@@ -1,15 +1,14 @@
 +++
-title = "About me"
-description = "About me"
-date = "2019-02-28"
-aliases = ["about-me", "about", "contact"]
-author = "BorjaIP"
+title = "About"
+slug = "about"
+description = "AI Solutions Architect building infra for production AI systems"
+hideTitle = true
 +++
 
-<h1 align="center"> Hi, I'm Borja👋 </h1>
+<h1 align="center"> \o/ Hi, I'm Borja </h1>
 
 <p align="center" style="text-align: center;">
   <img src="https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da845ddace98922f741c07f099bf" width="30%" title="Space" alt="Space">
 </p>
 
-💫 I’m a tech enthusiast with interest for DevOps, Software Architecture, Cloud, and Software Development. Currently working in building software, containerizing applications, setting up CI/CD pipelines, and crafting cloud infrastructures that are ready to handle 🤖 AI solutions.
+⌬ I build the infra that makes AI go to production. Then I use AI to make better infra decisions. Somewhere in that loop is my job.

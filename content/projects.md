@@ -1,74 +1,80 @@
 +++
 title = "Projects"
 slug = "projects"
+description = "Open source projects and personal tools"
+date = "2019-01-01"
+hideTitle = true
 +++
 
-🧠 Obsidian AI Plugin – Summarize Text
+## Active
 
-Currently building a plugin for Obsidian that brings AI ✨ into your second brain for summarize text and webs.
+### Prism
+*Python · Textual · TUI · Github*
 
-- 🤖 Summarize your notes with GPT.
-- 🔍 Context-aware note suggestions.
-- 🧩 Works seamlessly within Obsidian's UI.
+Terminal UI for reviewing GitHub PRs. File tree, delta-rendered diffs and 
+AI-generated summaries — without leaving the terminal.
 
-<hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
-
-🚀 [fapid-rest](https://github.com/BorjaIP/fapid-rest) – FastAPI REST Template for PoCs
-
-A modern and pragmatic FastAPI template designed for building RESTful APIs with a clean architecture mindset. Ideal for bootstrapping production-grade backends without the boilerplate.
-
-- 🧱 Clean Architecture – separation of concerns with clearly defined layers (domain, infrastructure, interfaces).
-- ⚙️ [SQLModel](https://sqlmodel.tiangolo.com/) + [Pydantic](https://docs.pydantic.dev/latest/) + PostgreSQL – type-safe models.
-- 📦 Simple MCS Structure – clear and readable project layout for fast onboarding.
-- 🧪 Ready-to-go with testing setup, linting, and Docker support.
-- 📈 Scalable for minimal setup, ideal for PoCs or dev projects.
-
-Built for developers who want to move fast without skipping best practices.
+[View on GitHub](https://github.com/BorjaIP/prism)
 
 <hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
 
-💸 Budget App – Track My Finances, My Way
+### Meridian
+*Python · SDD · Agents · HITL*
 
-A minimal but mighty app to manage my personal expenses, savings, and monthly budgets. Built to scratch my own itch 🧠💰.
+Personal framework for human-agent collaboration. Two execution modes:
+Human in the Loop and Agent Loop. Vault-based task protocol, no shared runtime.
 
-- ✨ Clean UI focused on actual needs, not bloated features.
-- 📊 Monthly summaries and savings tracker.
-- 🛠️ Built with [insert tech stack like [Reflex](https://reflex.dev/) (React for Python) + Python + [SQLModel](https://sqlmodel.tiangolo.com/)].
-- 🔐 Personal finance, locally stored. No cloud required.
+[View on GitHub](https://github.com/BorjaIP/meridian)
 
 <hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
 
-⚙️ [Opstoolkit](https://github.com/BorjaIP/opstoolkit) – My DevOps Cookbook
+### Budget App
+*Python · Reflex · SQLModel · SQLite*
 
-A giant toolbox of real-world infrastructure scripts, Docker setups, Helm charts, Terraform modules and CI/CD pipelines. My go-to library for automating everything.
+Personal finance tracker built to replace spreadsheets. Covers monthly
+budgets, expense tracking and savings goals. Local-first, no cloud, no SaaS.
 
-- 🐳 Docker examples for fast local testing.
-- ☸️ Kubernetes deployment patterns.
-- 📦 Terraform modules for AWS or GCP.
-- 🧪 CI/CD snippets (GitHub Actions, GitLab) (WIP).
+[View on GitHub](https://github.com/BorjaIP/budget-app)
+
+<hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
+
+## Evergreen
+
+### Opstoolkit
+*Docker · Kubernetes · Helm · Terraform*
+
+A personal library of production-grade infra scripts, Helm charts and
+Terraform modules. Built from real-world patterns, not tutorials.
 
 Think of it as my *DevOps Zettelkasten*.
 
-<hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
-
-🗂️ My Second Brain – Zettelkasten & PKM Experiments
-
-A digital garden cultivated with [Zettelkasten](https://zettelkasten.de/) principles 🌱. Building long-term knowledge, one atomic note at a time.
-
-- 📝 Daily notes → evergreen notes → knowledge webs.
-- 📚 Connected thoughts with backlinks and tags.
-- ⚒️ Tools: Obsidian, Markdown, Git for version control.
-- ✨ Learning how to think in public.
+[View on GitHub](https://github.com/BorjaIP/opstoolkit)
 
 <hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
 
-🔧 [Dotfiles](https://github.com/BorjaIP/dotfiles) – Minimalist, Functional, Always Evolving
+### Homelab
+*Terraform · Docker · Kubernetes · Self-hosted*
 
-Terminal is home. I maintain a growing, well-documented set of dotfiles across:
+Personal infrastructure lab. Everything provisioned as code, nothing 
+clicked by hand. Where I break things before breaking them at work.
 
-- 🐚 ZSH custom theme + fzf + Pure
-- 🧠 Tmux sessions like a pro
-- 🖥️ i3/awesome configs (depending on mood)
-- 💡 VSCode + Neovim dual setup
+[View on GitHub](https://github.com/BorjaIP/homelab)
 
-Always tinkering, iterating, breaking, and learning.
+<hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
+
+### Second Brain
+*Obsidian · PKM · Zettelkasten*
+
+[Zettelkasten](https://zettelkasten.de/)-based knowledge system, also published as a digital garden.
+Atomic notes, backlinks, evergreen thinking.
+
+[View on GitHub](https://github.com/BorjaIP/pkm)
+
+<hr style="width:40%;height:1px;border:none;color:#333;background-color:#333;">
+
+### Dotfiles
+*ZSH · Neovim · Tmux*
+
+My environment, versioned. Years of accumulated config that actually works – Minimalist, Functional, Always Evolving.
+
+[View on GitHub](https://github.com/BorjaIP/dotfiles)

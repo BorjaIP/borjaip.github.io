@@ -1,0 +1,15 @@
+<section class="container page">
+  <article>
+    {{ if not .Params.hideTitle }}
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="{{ .Permalink | safeURL }}">
+          {{ .Title }}
+        </a>
+      </h1>
+    </header>
+    {{ end }}
+
+    {{ .Content }}
+  </article>
+</section>
