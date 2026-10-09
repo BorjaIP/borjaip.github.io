@@ -16,3 +16,7 @@ hugo.linux
 /.hugo_build.lock
 # Windows download markers (WSL)
 *:Zone.Identifier
+
+# Local agent tooling and task tracking
+/odd/
+/.atl/
