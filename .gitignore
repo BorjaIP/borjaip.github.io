@@ -14,3 +14,5 @@ hugo.linux
 
 # Temporary lock file while building
 /.hugo_build.lock
+# Windows download markers (WSL)
+*:Zone.Identifier
