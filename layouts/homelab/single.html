@@ -1,0 +1,150 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+{{- $units := site.Data.homelab -}}
+{{- $sel := 5 -}}
+{{- $cur := index $units $sel -}}
+<div class="homelab" id="homelab">
+
+  <!-- HERO -->
+  <section class="hl-hero">
+    <canvas class="hl-planet" aria-hidden="true"></canvas>
+    <div class="hl-hero-main">
+      <div class="hl-hero-copy">
+        <div class="hl-eyebrow">NERV // magi // ホームラボ</div>
+        <h2 class="hl-h1">Anywhere<br><span class="hl-dim">can be a</span><br><span class="hl-accent">homelab</span>.</h2>
+        <p class="hl-lead">Proxmox, Terraform and Docker. Each machine is named after an Angel from Evangelion and has one specific job. Here is what each one does and why it exists.</p>
+        <div class="hl-runs">
+          <span class="hl-label">RUNS ON</span>
+          <div class="hl-runs-list">
+            <span>Proxmox VE</span><span>Terraform</span><span>Packer</span><span>Docker</span><span>Traefik</span><span>Pi-hole</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LINEUP -->
+  <section id="lineup" class="hl-lineup">
+    <div class="hl-bar"><span>02 / THE ELEVEN UNITS</span><span>PICK A VM TO EXPLORE</span></div>
+    <div class="hl-grid">
+      {{ range $i, $u := $units }}
+      <button type="button" class="hl-card" data-unit="{{ $i }}" aria-pressed="{{ if eq $i $sel }}true{{ else }}false{{ end }}" style="--c: {{ $u.color }}">
+        <span class="hl-card-head">
+          <span class="hl-id">{{ $u.id }}</span>
+          <span class="hl-cat">{{ $u.cat }}</span>
+        </span>
+        <span class="hl-frame">
+          {{ if $u.image }}<img src="{{ printf "images/homelab/%s" $u.image | relURL }}" alt="" style="object-position: {{ $u.pos }}" loading="lazy">{{ else }}<span class="hl-fb"><b>{{ $u.id }}</b></span>{{ end }}
+          <span class="hl-vignette"></span>
+          <span class="hl-kana">{{ $u.kana }}</span>
+        </span>
+        <span class="hl-avatar">
+          {{ if $u.image }}<img src="{{ printf "images/homelab/%s" $u.image | relURL }}" alt="" style="transform-origin: {{ $u.ipos }}; transform: scale({{ $u.zoom }})" loading="lazy">{{ else }}<span class="hl-fb"><b>{{ $u.id }}</b></span>{{ end }}
+        </span>
+        <span class="hl-card-body">
+          <span class="hl-name">{{ $u.n1 }}<span class="hl-c">{{ $u.n2 }}</span></span>
+          <span class="hl-desc">{{ $u.desc }}</span>
+          <span class="hl-more">WHY IT EXISTS →</span>
+        </span>
+      </button>
+      {{ end }}
+    </div>
+  </section>
+
+  <!-- MAGI -->
+  <section id="magi" class="hl-magi" aria-live="polite" style="--c: {{ $cur.color }}">
+    <div class="hl-bar"><span>03 / MAGI SYSTEM</span><span>FILE OF THE SELECTED UNIT</span></div>
+    <div class="hl-magi-top">
+      <span class="hl-magi-art" data-slot="art">
+        {{ if $cur.image }}<img src="{{ printf "images/homelab/%s" $cur.image | relURL }}" alt="{{ $cur.n1 }}{{ $cur.n2 }}" style="object-position: {{ $cur.pos }}">{{ else }}<span class="hl-fb hl-fb-lg"><b>{{ $cur.id }}</b><i>{{ $cur.kana }}</i></span>{{ end }}
+      </span>
+      <div class="hl-magi-meta">
+        <div class="hl-chips">
+          <span class="hl-chip">VM <span class="hl-c" data-slot="id">{{ $cur.id }}</span></span>
+          <span class="hl-chip" data-slot="cat">{{ $cur.cat }}</span>
+          <span class="hl-chip hl-status {{ if eq $cur.status "DEPLOYED" }}is-ok{{ else }}is-plan{{ end }}" data-slot="status">{{ $cur.status }}</span>
+        </div>
+        <h2 class="hl-h2"><span data-slot="n1">{{ $cur.n1 }}</span><span class="hl-c" data-slot="n2">{{ $cur.n2 }}</span> <span class="hl-kana-h" data-slot="kana">{{ $cur.kana }}</span></h2>
+        <div class="hl-svc" data-slot="svc">
+          {{ range $cur.svc }}<span>{{ . }}</span>{{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="hl-panels">
+      <div class="hl-panel"><div class="hl-label">MELCHIOR-1</div><h3>What it does</h3><p data-slot="does">{{ $cur.does }}</p></div>
+      <div class="hl-panel"><div class="hl-label">BALTHASAR-2</div><h3>Why it exists</h3><p data-slot="why">{{ $cur.why }}</p></div>
+      <div class="hl-panel"><div class="hl-label">CASPER-3</div><h3>Things to keep in mind</h3><p data-slot="note">{{ $cur.note }}</p></div>
+    </div>
+  </section>
+
+  <script defer src="{{ "js/homelab-planet.js" | relURL }}"></script>
+  <script type="application/json" id="homelab-data">{{ $units | jsonify | safeJS }}</script>
+  <script>
+  (function () {
+    var root = document.getElementById('homelab');
+    var el = document.getElementById('homelab-data');
+    if (!root || !el) return;
+    var units = JSON.parse(el.textContent);
+    var base = {{ "images/homelab/" | relURL }};
+    var magi = document.getElementById('magi');
+    var cards = root.querySelectorAll('.hl-card');
+    var slot = function (n) { return magi.querySelector('[data-slot="' + n + '"]'); };
+    var text = function (n, v) { slot(n).textContent = v; };
+
+    function art(u) {
+      var box = slot('art');
+      box.textContent = '';
+      if (u.image) {
+        var img = document.createElement('img');
+        img.src = base + u.image;
+        img.alt = u.n1 + u.n2;
+        img.style.objectPosition = u.pos || '50% 50%';
+        box.appendChild(img);
+      } else {
+        var fb = document.createElement('span');
+        fb.className = 'hl-fb hl-fb-lg';
+        var b = document.createElement('b'); b.textContent = u.id;
+        var i = document.createElement('i'); i.textContent = u.kana;
+        fb.appendChild(b); fb.appendChild(i);
+        box.appendChild(fb);
+      }
+    }
+
+    function select(idx, scroll) {
+      var u = units[idx];
+      if (!u) return;
+      magi.style.setProperty('--c', u.color);
+      art(u);
+      text('id', u.id); text('cat', u.cat);
+      text('n1', u.n1); text('n2', u.n2); text('kana', u.kana);
+      text('does', u.does); text('why', u.why); text('note', u.note);
+      var st = slot('status');
+      st.textContent = u.status;
+      st.className = 'hl-chip hl-status ' + (u.status === 'DEPLOYED' ? 'is-ok' : 'is-plan');
+      var svc = slot('svc');
+      svc.textContent = '';
+      (u.svc || []).forEach(function (s) {
+        var sp = document.createElement('span'); sp.textContent = s; svc.appendChild(sp);
+      });
+      cards.forEach(function (c) {
+        c.setAttribute('aria-pressed', String(Number(c.dataset.unit) === idx));
+      });
+      if (scroll) {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        magi.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      }
+    }
+
+    cards.forEach(function (c) {
+      c.addEventListener('click', function () { select(Number(c.dataset.unit), false); });
+    });
+
+    // A different unit every time the page loads.
+    select(Math.floor(Math.random() * units.length), false);
+  })();
+  </script>
+</div>
+{{ end }}

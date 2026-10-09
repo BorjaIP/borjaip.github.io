@@ -44,7 +44,7 @@ hideColorSchemeToggle = true
 maxSeeAlsoItems = 5
 
 # Custom SCSS, file path is relative to Hugo's asset folder (default: {your project root}/assets)
-customSCSS = ["scss/custom.scss"]
+customSCSS = ["scss/custom.scss", "scss/homelab.scss"]
 
 # Custom JS
 customJS = []
@@ -105,13 +105,18 @@ weight = 1
 url = "projects/"
 
 [[languages.en.menu.main]]
-name = "PKM"
+name = "Homelab"
 weight = 2
+url = "homelab/"
+
+[[languages.en.menu.main]]
+name = "PKM"
+weight = 3
 url = "https://borjaip.github.io/pkm/"
 
 [[languages.en.menu.main]]
 name = "About"
-weight = 3
+weight = 4
 url = "about/"
 
 # [[languages.en.menu.main]]
