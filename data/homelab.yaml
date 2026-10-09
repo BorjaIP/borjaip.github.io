@@ -1,0 +1,178 @@
+# Homelab units (from the NERV prototype).
+# Optional per-unit field: image (file under static/images/homelab/). pos/ipos/zoom tune the crop.
+- id: "201"
+  cat: "PROXMOX HOST"
+  n1: "Ad"
+  n2: "am"
+  kana: "アダム"
+  color: "#ffd23f"
+  status: "DEPLOYED"
+  svc: ["Proxmox VE"]
+  desc: "The host where every other machine lives."
+  does: "Runs Proxmox VE and hosts the other ten VMs. It is the base Terraform clones every machine onto."
+  why: "One physical machine with virtualization lets each role live in its own VM and be rebuilt without touching the rest."
+  note: "It is the single point of failure: if the host goes down, the whole homelab goes with it. It comes first in the numbering (201) because everything else depends on it."
+  pos: "50% 45%"
+  ipos: "50% 50%"
+  zoom: 1.1
+  image: adam.jpg
+- id: "202"
+  cat: "STORAGE"
+  n1: "Lil"
+  n2: "ith"
+  kana: "リリス"
+  color: "#e5412d"
+  status: "PLANNED*"
+  svc: ["TrueNAS*"]
+  desc: "The dedicated storage box, planned for the future."
+  does: "Reserved for TrueNAS as the homelab’s own storage."
+  why: "A dedicated storage VM would let me manage disks and data separately from the services."
+  note: "It carries an asterisk in the repository: it is a future change. Today the shared storage comes from an NTFS disk exported by Israfel."
+  pos: "50% 40%"
+  ipos: "50% 40%"
+  zoom: 1.5
+  image: lilith.jpg
+- id: "203"
+  cat: "MEDIA SERVER"
+  n1: "Sachi"
+  n2: "el"
+  kana: "サキエル"
+  color: "#8b5cf6"
+  status: "DEPLOYED"
+  svc: ["Plex", "Jellyfin", "Plextraktsync", "Navidrome"]
+  desc: "Everything you watch and listen to, in a single VM."
+  does: "Serves video with Plex and Jellyfin, syncs watch history to Trakt through Plextraktsync and streams music with Navidrome."
+  why: "It groups everything consumed on screens and speakers: one VM reading the library shared over NFS."
+  note: "Plex and Jellyfin coexist, so one can cover for the other. It depends on NFS storage to see the content."
+  pos: "50% 45%"
+  ipos: "45% 45%"
+  zoom: 1.8
+  image: sachiel.jpg
+- id: "204"
+  cat: "ARR STACK"
+  n1: "Sham"
+  n2: "shel"
+  kana: "シャムシエル"
+  color: "#22c7b8"
+  status: "DEPLOYED"
+  svc: ["Sonarr", "Radarr", "Lidarr", "Prowlarr", "Overseerr"]
+  desc: "The automation that requests, searches and organizes the library."
+  does: "Sonarr, Radarr and Lidarr manage series, movies and music; Prowlarr centralizes the indexers and Overseerr takes the requests."
+  why: "It replaces manual searching and sorting: ask for something and the stack handles the rest."
+  note: "It works with Ramiel to download and with Sandalphon to get past Cloudflare challenges through Flaresolverr."
+  pos: "50% 30%"
+  ipos: "50% 25%"
+  zoom: 1.8
+  image: shamshel.jpg
+- id: "205"
+  cat: "DOWNLOADERS"
+  n1: "Ram"
+  n2: "iel"
+  kana: "ラミエル"
+  color: "#4f9cff"
+  status: "DEPLOYED"
+  svc: ["Transmission"]
+  desc: "An isolated download client in its own VM."
+  does: "Runs Transmission and receives the downloads the Arr stack asks for."
+  why: "Isolating downloads keeps that traffic and those files off the machines that run the other services."
+  note: "It is tested together with OpenVPN by checking the IP with TorGuard’s verification torrent, which shows whether traffic leaves through the VPN."
+  pos: "50% 50%"
+  ipos: "50% 50%"
+  zoom: 1.2
+  image: ramiel.jpg
+- id: "206"
+  cat: "REVERSE PROXY & TUNNELS"
+  n1: "Gag"
+  n2: "hiel"
+  kana: "ガギエル"
+  color: "#5bdc6b"
+  status: "DEPLOYED"
+  svc: ["Traefik", "Cloudflare Tunnels"]
+  desc: "The front door: all traffic goes through here."
+  does: "Traefik routes every *.home domain to the right service, and Cloudflare Tunnels exposes whatever needs to be reachable."
+  why: "A single entry point means no memorizing IPs and ports: every service is reached by name."
+  note: "It uses the file provider, with one YAML per VM in routers/, because Traefik’s Docker provider only discovers containers on its own daemon. traefik-kop could automate this later."
+  pos: "60% 50%"
+  ipos: "70% 40%"
+  zoom: 1.8
+  image: gaghiel.jpg
+- id: "207"
+  cat: "NFS SERVER"
+  n1: "Isra"
+  n2: "fel"
+  kana: "イスラフェル"
+  color: "#ff4fa3"
+  status: "PLANNED*"
+  svc: ["NFS*"]
+  desc: "A shared disk every VM can see."
+  does: "Exports /mnt/storage over NFS so the other VMs read and write the same storage."
+  why: "It consolidates data in one place instead of spreading it across machines."
+  note: "The underlying disk is NTFS with ntfs-3g. It works, but with performance and permission limits; ext4 or ZFS would be the native choice on Linux."
+  pos: "50% 40%"
+  ipos: "40% 40%"
+  zoom: 1.6
+  image: israfel.jpg
+- id: "208"
+  cat: "NETWORK TOOLS"
+  n1: "Sandal"
+  n2: "phon"
+  kana: "サンダルフォン"
+  color: "#ff8a1f"
+  status: "DEPLOYED"
+  svc: ["Gluetun", "Flaresolverr"]
+  desc: "The VPN and network helpers for the rest of the stack."
+  does: "Gluetun routes traffic through a VPN and Flaresolverr solves the Cloudflare challenges of the indexers."
+  why: "It groups the auxiliary network pieces so the other VMs can use them without each running their own."
+  note: "It is a supporting piece: without it, part of the Arr stack and the downloads lose privacy or access to some indexers."
+  pos: "50% 50%"
+  ipos: "50% 50%"
+  zoom: 1.2
+  image: sandalphon.jpg
+- id: "209"
+  cat: "DASHBOARDS"
+  n1: "Mata"
+  n2: "rael"
+  kana: "マトリエル"
+  color: "#7ee0ff"
+  status: "DEPLOYED"
+  svc: ["Homepage", "Homarr", "Homer"]
+  desc: "The dashboards that show the whole homelab at a glance."
+  does: "Homepage, Homarr and Homer present a portal with links and service status."
+  why: "With eleven VMs, a start page saves remembering addresses and gives an overview."
+  note: "Three dashboards coexist, which makes it possible to compare them before settling on one."
+  pos: "50% 60%"
+  ipos: "50% 60%"
+  zoom: 1.3
+  image: matarael.jpg
+- id: "210"
+  cat: "MONITORING"
+  n1: "Saha"
+  n2: "quiel"
+  kana: "サハクィエル"
+  color: "#b7ff5c"
+  status: "DEPLOYED"
+  svc: ["Uptime Kuma", "Dozzle"]
+  desc: "The radar: tells you when something goes down and shows the logs."
+  does: "Uptime Kuma checks that each service responds and Dozzle shows container logs in real time."
+  why: "It shows what failed and why without SSHing into each machine."
+  note: "It watches the other VMs, so it should not depend on them to keep running."
+  pos: "50% 55%"
+  ipos: "50% 55%"
+  zoom: 1.7
+  image: sahaquiel.jpg
+- id: "211"
+  cat: "UTILITIES"
+  n1: "Ire"
+  n2: "ul"
+  kana: "イロウル"
+  color: "#ff7a59"
+  status: "DEPLOYED"
+  svc: ["Home Assistant", "Immich", "Paperless"]
+  desc: "Home, photos and documents: the everyday things."
+  does: "Home Assistant for home automation, Immich for photos and Paperless for documents."
+  why: "It gathers the personal-use services that do not fit media, network or monitoring."
+  note: "Home Assistant uses HACS and the Dirigera integration for the IKEA devices."
+  pos: "50% 50%"
+  ipos: "50% 50%"
+  zoom: 1.2
+  image: ireul.jpg

@@ -1,30 +1,134 @@
+// Palette and typography matched to faav.net; the pink accent is kept for hover/selection.
+$accent: #de73be;
+$bg: #0a0a0a;
+$text: #d4d4d4;
+$heading: #e8e8e8;
+$link: #bbb;
+$muted: #888;
+$subtle: #666;
+$font: "Inconsolata", monospace;
+
+html,
+body,
+code,
+pre,
+kbd,
+samp {
+    font-family: $font;
+}
+
+body {
+    font-size: 1.8rem; // Inconsolata runs small; the theme root is 62.5%.
+}
+
 .navigation .navigation-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: unset !important;
     text-transform: unset !important;
 }
 
+.navigation-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
 // Dark mode
-body.colorscheme-dark .navigation a:hover {
-    color: #C0C5CE !important;
+body.colorscheme-dark {
+    background-color: $bg;
+    color: $text;
+
+    .navigation {
+        background-color: $bg;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+
+        .navigation-list {
+            background-color: $bg;
+        }
+
+        a {
+            color: $subtle !important;
+            letter-spacing: 0.04em;
+            transition: color 200ms ease;
+        }
+
+        .navigation-link {
+            text-transform: lowercase;
+        }
+
+        .navigation-title {
+            color: $heading !important;
+        }
+
+        // The theme colors header <span>s on its own, so the title text must inherit from the link.
+        .navigation-title span {
+            color: inherit !important;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: $accent !important;
+            text-decoration: none !important;
+        }
+    }
+
+    // Social icons and any other link: accent on hover/focus/click (the theme uses blue).
+    a:hover,
+    a:focus,
+    a:active {
+        color: $accent !important;
+    }
+
+    // Scoped to <article> so the full-bleed homelab page keeps its own palette.
+    .content article {
+        h1 {
+            color: #fff;
+        }
+
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: $heading;
+        }
+
+        em {
+            color: $muted;
+        }
+
+        a,
+        a.external-link {
+            color: $link !important;
+            transition: color 200ms ease;
+        }
+
+        a:hover,
+        a:focus,
+        a:active {
+            color: $accent !important;
+        }
+    }
+
+    .footer {
+        color: $subtle;
+
+        a {
+            color: $muted;
+        }
+
+        a:hover {
+            color: $accent;
+        }
+    }
 }
 
-body.colorscheme-dark .content a.external-link {
-    color: #B48EAD !important;
-}
-
-body.colorscheme-dark .content a.external-link:hover {
-    color: #96B5B4 !important;
-}
-
-body.colorscheme-dark .content a:hover {
-    color: #B48EAD !important;
-}
-
-body.colorscheme-dark .footer a {
-    color: #65737E;
-}
-
-// Ligh mode
+// Light mode
 body.colorscheme-light .navigation a {
     color: #2B303B;
 }
@@ -34,9 +138,71 @@ body.colorscheme-light .content a {
 }
 
 body.colorscheme-light .content a:hover {
-    color: #B48EAD !important;
+    color: $accent !important;
 }
 
 body.colorscheme-light .footer a {
     color: #65737E;
+}
+
+// About card: dark card with a thin white outline card peeking out behind it.
+.about-card {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 560px;
+    // How far the outline card peeks out behind (faav.net: ~40px left, ~32px up).
+    --about-offset-x: 40px;
+    --about-offset-y: 32px;
+    margin: calc(var(--about-offset-y) + 2rem) auto 2rem;
+    // Keep the peeking outline inside the viewport.
+    left: calc(var(--about-offset-x) / 2);
+
+    // The outline card behind: offset up-left, white hairline only.
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform: translate(calc(var(--about-offset-x) * -1), calc(var(--about-offset-y) * -1));
+        border: 1px solid #fff;
+        border-radius: 16px;
+        z-index: -1;
+    }
+
+    &__body {
+        padding: 1.6rem;
+        background: #0a0a0a;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    &__media {
+        display: block;
+        width: 60%;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 12px;
+    }
+
+    &__title {
+        margin: 1.6rem 0 0.8rem;
+        text-align: center;
+
+        &::before {
+            content: none;
+        }
+    }
+
+    &__text {
+        margin: 0;
+        font-size: 1.5rem;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+        --about-offset-x: 14px;
+        --about-offset-y: 14px;
+    }
 }

@@ -1,0 +1,179 @@
+// Homelab page. Everything is scoped under .homelab so it cannot leak into other pages.
+// The theme sets html { font-size: 62.5% }, so sizes here are in px on purpose.
+
+.homelab {
+  --accent: #de73be;
+  --bg: #0a0a0a;
+  --line: #222;
+  --fg: #e8e8e8;
+  --fg-2: #bbb;
+  --fg-3: #888;
+  --fg-4: #666;
+  --ok: #5bdc6b;
+  --plan: #ffd23f;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --serif: 'Shippori Mincho B1', serif;
+
+  // Full-bleed: the page is the dark canvas edge to edge inside the theme's
+  // .content, so the site header/footer/menu stay and the theme layout is untouched.
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: hidden;
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  // The theme colors links blue (#42a5f5) on :focus/:active; keep the accent instead.
+  a, a:visited { color: var(--fg); text-decoration: none; }
+  a:hover, a:focus, a:active { color: var(--accent) !important; text-decoration: none; }
+  button {
+    font: inherit; color: inherit; cursor: pointer;
+    padding: 0; margin: 0; text-align: left; background: none; border: 0;
+  }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  h2, h3, p { margin: 0; padding: 0; }
+  h2::before, h3::before { content: none; }
+  img { max-width: none; }
+
+  .hl-c { color: var(--c); }
+  .hl-accent { color: var(--accent); }
+  .hl-dim { color: var(--fg-2); }
+  .hl-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: #555; }
+
+  .hl-bar {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; color: var(--fg-4);
+  }
+
+  // Placeholder used when a unit has no image
+  .hl-fb {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--c), #000 140%);
+    color: #000; font-family: var(--mono);
+    b { font-weight: 600; font-size: 14px; letter-spacing: 0.06em; }
+    i { font-family: var(--serif); font-style: normal; font-weight: 800; font-size: 28px; margin-top: 4px; }
+  }
+  .hl-fb-lg b { font-size: 40px; }
+  .hl-fb-lg i { font-size: 36px; }
+}
+
+// ---- Hero ----
+.homelab .hl-hero {
+  position: relative; padding: 28px 28px 56px; min-height: 720px;
+}
+.homelab .hl-planet {
+  position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;
+  image-rendering: pixelated;
+}
+.homelab .hl-hero-main {
+  position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 28px; padding-top: 8px;
+}
+.homelab .hl-hero-copy {
+  flex: 1 1 420px; min-width: 0; max-width: 620px; display: flex; flex-direction: column; gap: 26px;
+}
+.homelab .hl-eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); opacity: 0.85;
+}
+.homelab .hl-h1 {
+  font-weight: 500; font-size: clamp(44px, 6.2vw, 78px); line-height: 0.98;
+  letter-spacing: -0.035em; color: var(--fg);
+}
+.homelab .hl-lead { max-width: 520px; font-size: 18px; line-height: 1.55; color: var(--fg-2); }
+.homelab .hl-runs { display: flex; flex-direction: column; gap: 14px; max-width: 560px; }
+.homelab .hl-runs-list {
+  display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: var(--mono); font-size: 12px; color: var(--fg-3);
+}
+
+
+// ---- Lineup ----
+.homelab .hl-lineup { border-top: 1px solid var(--line); }
+.homelab .hl-lineup .hl-bar { padding: 18px 28px; border-bottom: 1px solid var(--line); }
+.homelab .hl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.homelab .hl-card {
+  display: flex; flex-direction: column; min-width: 0; background: var(--bg);
+  border: 1px solid var(--line); margin: 0 -1px -1px 0;
+  &:hover { background: #111; }
+  &[aria-pressed="true"] { border-color: var(--c); position: relative; z-index: 1; }
+}
+.homelab .hl-card-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+}
+.homelab .hl-id { padding: 3px 8px; background: var(--c); color: #000; font-weight: 600; }
+.homelab .hl-cat { color: var(--fg-4); }
+.homelab .hl-frame {
+  display: block; position: relative; height: 180px; overflow: hidden; background: var(--bg);
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+.homelab .hl-vignette { position: absolute; inset: 0; box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.55); }
+.homelab .hl-kana {
+  position: absolute; right: 10px; bottom: 8px; font-family: var(--serif); font-weight: 800;
+  font-size: 18px; color: #f3e9d2; text-shadow: 0 1px 3px #000, 0 0 8px #000;
+}
+.homelab .hl-avatar {
+  display: block; width: 56px; height: 56px; margin: -28px 0 0 16px; border-radius: 12px;
+  overflow: hidden; background: var(--bg); border: 3px solid var(--c); position: relative;
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hl-fb b { font-size: 12px; }
+}
+.homelab .hl-card-body { display: flex; flex-direction: column; gap: 10px; padding: 16px 16px 20px; }
+.homelab .hl-name { font-weight: 500; font-size: 30px; line-height: 1.1; letter-spacing: -0.03em; color: var(--fg); }
+.homelab .hl-desc { font-size: 14px; line-height: 1.5; color: var(--fg-2); }
+.homelab .hl-more { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; color: var(--c); }
+
+// ---- MAGI ----
+.homelab .hl-magi {
+  max-width: 1240px; margin: 0 auto; padding: 72px 28px 80px;
+  display: flex; flex-direction: column; gap: 28px; scroll-margin-top: 16px;
+}
+.homelab .hl-magi-top { display: flex; flex-wrap: wrap; align-items: stretch; gap: 28px; }
+.homelab .hl-magi-art {
+  display: block; flex: 0 1 320px; min-width: 240px; height: 220px; overflow: hidden;
+  background: var(--bg); border: 1px solid var(--c);
+  img { width: 100%; height: 100%; object-fit: cover; display: block; }
+}
+.homelab .hl-magi-meta {
+  flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column;
+  justify-content: space-between; gap: 16px;
+}
+.homelab .hl-chips { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 12px; }
+.homelab .hl-chip { padding: 8px 12px; border: 1px solid var(--line); color: var(--fg-2); }
+.homelab .hl-status { color: #000; font-weight: 600; letter-spacing: 0.1em; border-color: transparent; }
+.homelab .hl-status.is-ok { background: var(--ok); }
+.homelab .hl-status.is-plan { background: var(--plan); }
+.homelab .hl-h2 {
+  font-weight: 500; font-size: clamp(36px, 5vw, 64px); line-height: 1.02;
+  letter-spacing: -0.035em; color: var(--fg);
+}
+.homelab .hl-kana-h {
+  font-family: var(--serif); font-weight: 800; font-size: 0.4em; letter-spacing: 0; color: var(--fg-4);
+}
+.homelab .hl-svc {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  span {
+    padding: 6px 12px; border: 1px solid var(--c); color: var(--fg);
+    font-family: var(--mono); font-size: 12px;
+  }
+}
+.homelab .hl-panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.homelab .hl-panel {
+  display: flex; flex-direction: column; gap: 14px; padding: 24px;
+  background: #0e0e0e; border: 1px solid var(--line);
+  h3 { font-weight: 500; font-size: 22px; letter-spacing: -0.02em; color: var(--fg); }
+  p { font-size: 15px; line-height: 1.6; color: var(--fg-2); }
+}
+
+@media (max-width: 900px) {
+  .homelab .hl-planet { opacity: 0.4; }
+  .homelab .hl-hero { min-height: 0; padding: 20px 16px 40px; }
+  .homelab .hl-lineup .hl-bar { padding: 14px 16px; }
+  .homelab .hl-magi { padding: 48px 16px 56px; }
+}
