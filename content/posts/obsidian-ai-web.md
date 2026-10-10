@@ -11,6 +11,10 @@ series = ["PKM"]
 I read a lot. Articles, papers, repos, random Medium posts at 1am. And most of that
 was dying in browser tabs instead of landing in my [PKM](https://github.com/BorjaIP/pkm).
 
+The seed was [LLAPRAG](/posts/llaprag/), a small experiment where a local model turned
+arXiv PDFs into structured notes for my vault. Once that worked, I wanted the same for
+everything else I read — and that itch is what made me build this plugin.
+
 So I built [AI Web](https://github.com/BorjaIP/obsidian-ai-web), a small Obsidian plugin
 that takes a URL and writes a structured note straight into my vault. Not a chatbot
 inside Obsidian — I don't want to talk to it, I want it to file my reading for me.
