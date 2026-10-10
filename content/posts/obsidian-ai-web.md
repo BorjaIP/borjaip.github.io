@@ -1,7 +1,7 @@
 +++
 title = "I built a tiny Obsidian plugin to feed my second brain"
 date = 2025-04-29
-draft = true
+draft = false
 description = "AI Web turns any article or repo into a structured note in my PKM vault, with tags that link back to my Zettelkasten."
 tags = ["obsidian", "ai-web", "pkm", "zettelkasten", "openai"]
 categories = ["devlog"]

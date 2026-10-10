@@ -1,7 +1,7 @@
 +++
 title = "I rebuilt Meridian on top of Gentle AI"
 date = 2026-10-10
-draft = true
+draft = false
 description = "I've been using Gentle AI for a couple of months so I moved Meridian onto its ODD flow."
 tags = ["meridian", "gentle-ai", "odd", "engram", "obsidian"]
 categories = ["devlog"]

@@ -1,7 +1,7 @@
 +++
 title = "Why I built Meridian"
 date = 2026-04-04
-draft = true
+draft = false
 description = "I wanted my own SDD flow and a way to see what my agents actually did."
 tags = ["meridian", "agents", "hitl", "sdd", "obsidian"]
 categories = ["devlog"]
