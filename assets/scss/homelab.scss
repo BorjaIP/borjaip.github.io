@@ -87,6 +87,8 @@
 }
 .homelab .hl-lead { max-width: 520px; font-size: 18px; line-height: 1.55; color: var(--fg-2); }
 .homelab .hl-runs { display: flex; flex-direction: column; gap: 14px; max-width: 560px; }
+.homelab .hl-label--src { margin-top: 6px; }
+.homelab .hl-gh { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--fg-3); transition: color 200ms ease; }
 .homelab .hl-runs-list {
   display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: var(--mono); font-size: 12px; color: var(--fg-3);
 }
