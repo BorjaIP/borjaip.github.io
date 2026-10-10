@@ -1,0 +1,55 @@
+# Checks that run on every pull request, so a change that would break the site is caught
+# before it reaches main (the deploy workflow only runs after the merge).
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  # Allows running the checks by hand from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# A new push to the same branch replaces the previous run
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      # Keep in sync with deploy.yaml and .devcontainer/devcontainer.json
+      HUGO_VERSION: 0.167.0
+      HUGO_ENVIRONMENT: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      # Data files and hand-written JavaScript
+      - name: Check data and scripts
+        run: bash scripts/check-site.sh
+
+      # Same build as the deploy, but any warning (deprecations, bad templates) fails the check
+      - name: Build with Hugo (warnings are errors)
+        run: hugo --gc --minify --panicOnWarning --baseURL "https://borjaip.github.io/"
+
+      # Internal links and local assets only, so the check is fast and does not flake on other sites
+      - name: Check links in the built site
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --no-progress --root-dir "${{ github.workspace }}/public" "public/**/*.html"
+          fail: true
