@@ -30,7 +30,6 @@
   <!-- Store links (dashed) -->
   <path d="M528,152 V200" fill="none" stroke="#404040" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#llaprag-flow-arrow)"/>
   <path d="M728,200 V152" fill="none" stroke="#404040" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#llaprag-flow-arrow)"/>
-  <path d="M604,232 H648 Q656,232 656,224 V200 Q656,192 664,192 H680" fill="none" stroke="#404040" stroke-width="1.2" stroke-dasharray="5,4"/>
 
   <!-- Arrow labels -->
   <rect x="500" y="168" width="58" height="14" rx="2" fill="#ffffff"/>
