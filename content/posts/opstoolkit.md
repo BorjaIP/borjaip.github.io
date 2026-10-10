@@ -69,6 +69,6 @@ breaks, I fix it the same day I need it, and that's the maintenance plan.
 ## What's next
 
 Keep throwing things in as I write them, which is honestly the only workflow this
-repo needs. Lately it's growing an AI corner (chat-with-models tools landed not long
-ago). If you have your own pile of scruffy scripts, I'd recommend the same: one repo,
+repo needs. It started as a bunch of Istio YAMLs and a tunnel script and it will
+probably end up with things I can't even imagine today. If you have your own pile of scruffy scripts, I'd recommend the same: one repo,
 pure bash, clone it everywhere. Your future SSH session will thank you.
