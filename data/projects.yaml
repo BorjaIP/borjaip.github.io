@@ -1,0 +1,36 @@
+# Projects page data. Add an entry under `now` or `baselines` and it shows up; no HTML needed.
+updated: October 2026
+
+# What I'm working on right now.
+now:
+  - name: Prism
+    url: https://github.com/BorjaIP/prism
+    desc: Terminal UI for reviewing GitHub PRs, with a file tree, delta diffs and AI summaries.
+    tags: [Python, Textual, TUI]
+  - name: Meridian
+    url: https://github.com/BorjaIP/meridian
+    desc: Framework for human-agent collaboration, in Human in the Loop and Agent Loop modes.
+    tags: [Python, SDD, Agents]
+  - name: Budget App
+    url: https://github.com/BorjaIP/budget-app
+    desc: Local-first personal finance tracker that replaces spreadsheets. No cloud, no SaaS.
+    tags: [Python, Reflex, SQLite]
+
+# Evergreen: always there and always evolving.
+baselines:
+  - name: Dotfiles
+    url: https://github.com/BorjaIP/dotfiles
+    desc: My environment, versioned. Minimalist, functional, always evolving.
+    tags: [ZSH, Neovim, Tmux]
+  - name: Homelab
+    url: https://github.com/BorjaIP/homelab
+    desc: Personal infrastructure lab, everything as code. Where I break things before work.
+    tags: [Terraform, Docker, Kubernetes]
+  - name: Second Brain
+    url: https://github.com/BorjaIP/pkm
+    desc: Zettelkasten knowledge system, also published as a digital garden.
+    tags: [Obsidian, PKM, Zettelkasten]
+  - name: Opstoolkit
+    url: https://github.com/BorjaIP/opstoolkit
+    desc: Production-grade infra scripts, Helm charts and Terraform modules. My DevOps Zettelkasten.
+    tags: [Docker, Kubernetes, Helm, Terraform]

@@ -206,3 +206,163 @@ body.colorscheme-light .footer a {
         --about-offset-y: 14px;
     }
 }
+
+// Projects page: a compact "Now" list and a two-column "Baselines" grid (data/projects.yaml).
+.projects {
+    .pj-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0 0 1.2rem;
+    }
+
+    .pj-head--second {
+        margin-top: 3.6rem;
+    }
+
+    .pj-label {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        margin: 0;
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+
+        // The theme prefixes headings with "# ".
+        &::before {
+            content: none;
+        }
+    }
+
+    .pj-sub {
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        color: $muted;
+    }
+
+    // Small glowing dot marking the section of active projects.
+    .pj-dot {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-radius: 50%;
+        background: $accent;
+        box-shadow: 0 0 0.9rem rgba(222, 115, 190, 0.7);
+    }
+
+    .pj-date {
+        font-size: 1.2rem;
+        color: $subtle;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        position: relative;
+        margin: 0;
+
+        &::before {
+            content: none;
+        }
+    }
+
+    // The whole row/card is clickable through the name link.
+    .pj-name {
+        font-size: 1.9rem;
+        font-weight: 600;
+        transition: color 200ms ease;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+        }
+    }
+
+    .pj-arrow {
+        font-size: 1.4rem;
+        opacity: 0;
+        transition: opacity 200ms ease;
+    }
+
+    li:hover .pj-arrow {
+        opacity: 1;
+    }
+
+    .pj-desc {
+        margin: 0;
+        font-size: 1.5rem;
+        line-height: 1.5;
+        color: #aaa;
+    }
+
+    .pj-tags {
+        margin: 0.3rem 0 0;
+        font-size: 1.25rem;
+        color: $subtle;
+    }
+
+    .pj-row {
+        display: grid;
+        grid-template-columns: 17rem 1fr;
+        gap: 0 2rem;
+        align-items: baseline;
+        padding: 1.4rem 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+        &:last-child {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+    }
+
+    .pj-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+    }
+
+    .pj-card {
+        padding: 1.4rem 1.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        transition: border-color 200ms ease, background 200ms ease;
+
+        &:hover {
+            border-color: rgba(222, 115, 190, 0.6);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .pj-name {
+            display: inline-block;
+            margin-bottom: 0.4rem;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .pj-row {
+            grid-template-columns: 1fr;
+            gap: 0.4rem;
+        }
+
+        .pj-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+// Name links: bright by default, accent on hover (beats the generic gray link rule).
+body.colorscheme-dark .content .projects .pj-name {
+    color: $heading !important;
+}
+
+body.colorscheme-dark .content .projects .pj-name:hover,
+body.colorscheme-dark .content .projects .pj-name:focus {
+    color: $accent !important;
+}
