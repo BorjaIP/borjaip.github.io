@@ -1,0 +1,39 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+{{- $d := hugo.Data.projects -}}
+<section class="container page projects">
+  <article>
+    <header class="pj-head">
+      <h2 class="pj-label"><span class="pj-dot" aria-hidden="true"></span>Now</h2>
+      <span class="pj-date">updated {{ $d.updated }}</span>
+    </header>
+    <ul class="pj-now">
+      {{ range $d.now }}
+      <li class="pj-row">
+        <a class="pj-name" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}<span class="pj-arrow" aria-hidden="true"> ↗</span></a>
+        <div class="pj-body">
+          <p class="pj-desc">{{ .desc }}</p>
+          <p class="pj-tags">{{ delimit .tags " · " }}</p>
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+
+    <header class="pj-head pj-head--second">
+      <h2 class="pj-label">Baselines <span class="pj-sub">· evergreen</span></h2>
+      <span class="pj-date">always on, always evolving</span>
+    </header>
+    <ul class="pj-grid">
+      {{ range $d.baselines }}
+      <li class="pj-card">
+        <a class="pj-name" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}<span class="pj-arrow" aria-hidden="true"> ↗</span></a>
+        <p class="pj-desc">{{ .desc }}</p>
+        <p class="pj-tags">{{ delimit .tags " · " }}</p>
+      </li>
+      {{ end }}
+    </ul>
+  </article>
+</section>
+{{ end }}
