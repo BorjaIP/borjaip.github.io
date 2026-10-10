@@ -1,0 +1,7 @@
+# Patterns (one regular expression per line) that the offline link check skips.
+
+# PKM is a separate site published under the same domain; it is not part of this build.
+/pkm/?$
+
+# Optional Safari pinned-tab icon that the theme links to by default; this site does not ship one.
+safari-pinned-tab\.svg
