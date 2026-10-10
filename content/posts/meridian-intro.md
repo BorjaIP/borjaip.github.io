@@ -1,32 +1,35 @@
 +++
-title = "Meridian: a vault-based protocol for human-agent work"
-date = 2026-10-10
+title = "Why I built Meridian"
+date = 2026-04-04
 draft = true
-description = "A small framework where a human and an agent share one task list, with no shared runtime."
-tags = ["meridian", "agents", "hitl"]
+description = "I wanted my own SDD flow and a way to see what my agents actually did."
+tags = ["meridian", "agents", "hitl", "sdd", "obsidian"]
 categories = ["devlog"]
+series = ["Meridian"]
 +++
 
-Meridian is my personal framework for working with agents. A human and an agent share
-the same list of tasks, kept as plain notes in a vault, and there is no shared runtime between them.
+So, Meridian. It started because I wanted my own SDD. Or at least something I could run one *under*.
 
-> This is a draft skeleton. Fill in the TODO sections and set `draft = false` to publish it.
+I liked the idea of launching things like [Superpowers](https://github.com/obra/superpowers) or
+Matt Pocock's [grill-me](https://github.com/mattpocock/skills/tree/main), but I also wanted to keep
+track of what happened afterwards: the task I triggered (that's me), the task the agent created from it,
+and every state it went through. With me in the loop, validating and verifying each phase, instead of
+a "the agent did stuff, trust me".
 
-## Two ways to work
+## Where it lives
 
-- **Human in the Loop:** the agent proposes, I review and decide.
-- **Agent Loop:** the agent keeps picking up tasks on its own until the work is done.
+In my Obsidian vault. It's my PKM anyway, so why build yet another place? Same structure I already
+trust. The agents don't share memory or APIs with me, they just read and write the vault.
 
-## How it works
+## How it goes
 
-TODO: how a task is written, where it lives in the vault and how its status changes.
+I write a task, the agent plans it, I approve it (or tweak it), the agent builds it and I check the
+result. The status fields in the notes are the only thing we share. That's it.
 
-## Why I built it
+## What I want next
 
-TODO: the problem it solves and what I tried before.
+I'm still building all this. The idea is to plug in several SDD or RDD frameworks, launch any of them
+from any harness and have everything logged: where I ran it from, how and when.
 
-## What's next
-
-TODO: open ideas and the next milestone.
-
-The code is on [GitHub](https://github.com/BorjaIP/meridian).
+If you want the details, it's all in the [repo](https://github.com/BorjaIP/meridian)
+(and the [concepts doc](https://github.com/BorjaIP/meridian/blob/main/docs/concepts.md)).

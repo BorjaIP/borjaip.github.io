@@ -89,7 +89,7 @@
   status: "DEPLOYED"
   svc: ["Traefik", "Cloudflare Tunnels"]
   desc: "The front door: all traffic goes through here."
-  does: "Traefik routes every *.home domain to the right service, and Cloudflare Tunnels exposes whatever needs to be reachable."
+  does: "Traefik routes every *.home domain to the right service and Cloudflare Tunnels exposes whatever needs to be reachable."
   why: "A single entry point means no memorizing IPs and ports: every service is reached by name."
   note: "It uses the file provider, with one YAML per VM in routers/, because Traefik’s Docker provider only discovers containers on its own daemon. traefik-kop could automate this later."
   pos: "60% 50%"

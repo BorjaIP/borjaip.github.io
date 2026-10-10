@@ -373,3 +373,124 @@ body.colorscheme-dark .content .projects .pj-name:hover,
 body.colorscheme-dark .content .projects .pj-name:focus {
     color: $accent !important;
 }
+
+// Posts: highlights (tags, links, bold, quotes, code) use the site palette instead of the theme's gray and white.
+$soft: #e6a8d0;   // light tint of the accent
+$plum: #c58bc0;
+
+body.colorscheme-dark .content .post {
+    .post-title .title-link {
+        color: #fff !important;
+    }
+
+    .post-title .title-link:hover {
+        color: $accent !important;
+    }
+
+    .post-meta {
+        font-size: 1.3rem;
+        color: $subtle;
+
+        i {
+            color: $subtle;
+        }
+
+        .categories,
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.6rem;
+        }
+
+        // The theme separates tags with a bullet; the pills do not need it.
+        .separator {
+            display: none;
+        }
+
+        // Thin outlined pills instead of the theme's gray blocks.
+        .tag,
+        .categories a {
+            padding: 0.1rem 1.1rem;
+            border: 1px solid rgba(222, 115, 190, 0.35);
+            border-radius: 999px;
+            background: transparent;
+            transition: border-color 200ms ease, background 200ms ease;
+        }
+
+        .tag a {
+            color: $accent !important;
+        }
+
+        .categories a {
+            border-color: rgba(197, 139, 192, 0.45);
+            color: $plum !important;
+        }
+
+        .tag:hover,
+        .categories a:hover {
+            border-color: $accent;
+            background: rgba(222, 115, 190, 0.1);
+        }
+
+        .categories a:hover {
+            color: $accent !important;
+        }
+    }
+
+    .post-content {
+        // Links stand out in the accent with a soft underline.
+        a:not(.heading-link) {
+            color: $accent !important;
+            text-decoration: underline;
+            text-decoration-color: rgba(222, 115, 190, 0.4);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.25em;
+            transition: text-decoration-color 200ms ease, color 200ms ease;
+        }
+
+        a:not(.heading-link):hover {
+            color: $soft !important;
+            text-decoration-color: $soft;
+        }
+
+        strong {
+            color: $soft;
+        }
+
+        li::marker {
+            color: $accent;
+        }
+
+        // Images (like the Meridian diagram, which has a white background) read as framed cards.
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 2rem auto 0.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+        }
+
+        // Italic line right after an image works as its caption.
+        p > img + em {
+            display: block;
+            text-align: center;
+            font-size: 1.3rem;
+            color: $subtle;
+        }
+
+        blockquote {
+            border-left: 3px solid $accent;
+            color: #aaa;
+        }
+
+        :not(pre) > code {
+            padding: 0.1rem 0.5rem;
+            border-radius: 4px;
+            background: rgba(222, 115, 190, 0.12);
+            color: $soft;
+        }
+    }
+}
