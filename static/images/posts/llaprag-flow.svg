@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1040 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="llaprag-flow-title llaprag-flow-desc" id="llaprag-flow-root">
+  <title id="llaprag-flow-title">How a paper flows through LLAPRAG</title>
+  <desc id="llaprag-flow-desc">Flow diagram: an arXiv PDF is downloaded, parsed to markdown with LlamaParse, chunked and embedded into ChromaDB, then the local Ollama llama3 model answers over the index to extract a description and key features, which are saved as a note in the Obsidian vault.</desc>
+  <defs>
+    <style>#llaprag-flow-root { --color-paper:  #ffffff;
+      --color-ink:    #0a0a0a;
+      --color-muted:  #404040;
+      --font-sans: 'Avenir Next', 'Century Gothic', Futura, 'Trebuchet MS', system-ui, sans-serif;
+      --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, 'DejaVu Sans Mono', monospace; }
+      #llaprag-flow-root { font-family: var(--font-sans); color: var(--color-ink); }
+      #llaprag-flow-root .nm { font-family: var(--font-sans); font-size: 13px; font-weight: 600; }
+      #llaprag-flow-root .sb { font-family: var(--font-mono); font-size: 10.5px; font-weight: 400; }
+      #llaprag-flow-root .ey { font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.16em; }
+      #llaprag-flow-root .al { font-family: var(--font-mono); font-size: 9px; font-weight: 400; letter-spacing: 0.06em; }
+      #llaprag-flow-root .lg { font-family: var(--font-sans); font-size: 11px; font-weight: 400; }</style>
+    <marker id="llaprag-flow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#404040"/></marker>
+  </defs>
+  <rect width="100%" height="100%" fill="#ffffff"/>
+
+  <!-- Top line -->
+  <line x1="40" y1="40" x2="1000" y2="40" stroke="#0a0a0a" stroke-opacity="0.30" stroke-width="1"/>
+  <text class="ey" x="40" y="30" fill="#404040">PAPER → NOTE</text>
+
+  <!-- Arrows (drawn first) -->
+  <path d="M208,120 H248" fill="none" stroke="#404040" stroke-width="1.2" marker-end="url(#llaprag-flow-arrow)"/>
+  <path d="M408,120 H448" fill="none" stroke="#404040" stroke-width="1.2" marker-end="url(#llaprag-flow-arrow)"/>
+  <path d="M608,120 H648" fill="none" stroke="#404040" stroke-width="1.2" marker-end="url(#llaprag-flow-arrow)"/>
+  <path d="M808,120 H848" fill="none" stroke="#404040" stroke-width="1.2" marker-end="url(#llaprag-flow-arrow)"/>
+  <!-- Store links (dashed) -->
+  <path d="M528,152 V200" fill="none" stroke="#404040" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#llaprag-flow-arrow)"/>
+  <path d="M728,200 V152" fill="none" stroke="#404040" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#llaprag-flow-arrow)"/>
+
+  <!-- Arrow labels -->
+  <rect x="500" y="168" width="58" height="14" rx="2" fill="#ffffff"/>
+    <text class="al" x="529" y="178" fill="#595959" text-anchor="middle">WRITES</text>
+  <rect x="694" y="168" width="68" height="14" rx="2" fill="#ffffff"/>
+    <text class="al" x="728" y="178" fill="#595959" text-anchor="middle">RETRIEVES</text>
+
+  <!-- Nodes -->
+  <rect x="48" y="88" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="48" y="88" width="160" height="64" rx="6" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1"/>
+    <text class="nm" x="128" y="114" fill="#ffffff" text-anchor="middle">arXiv PDF</text>
+    <text class="sb" x="128" y="131" fill="#d9d9d9" text-anchor="middle">download.py → data/</text>
+  <rect x="248" y="88" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="248" y="88" width="160" height="64" rx="6" fill="#ffffff" stroke="#0a0a0a" stroke-width="1"/>
+    <text class="nm" x="328" y="114" fill="#0a0a0a" text-anchor="middle">Parse</text>
+    <text class="sb" x="328" y="131" fill="#595959" text-anchor="middle">LlamaParse → markdown</text>
+  <rect x="448" y="88" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="448" y="88" width="160" height="64" rx="6" fill="#ffffff" stroke="#0a0a0a" stroke-width="1"/>
+    <text class="nm" x="528" y="114" fill="#0a0a0a" text-anchor="middle">Index</text>
+    <text class="sb" x="528" y="131" fill="#595959" text-anchor="middle">nodes → embeddings</text>
+  <rect x="648" y="88" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="648" y="88" width="160" height="64" rx="6" fill="#ffffff" stroke="#0a0a0a" stroke-width="1"/>
+    <text class="nm" x="728" y="114" fill="#0a0a0a" text-anchor="middle">Ask the model</text>
+    <text class="sb" x="728" y="131" fill="#595959" text-anchor="middle">description · key features</text>
+  <rect x="848" y="88" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="848" y="88" width="160" height="64" rx="6" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="1"/>
+    <text class="nm" x="928" y="114" fill="#ffffff" text-anchor="middle">Obsidian note</text>
+    <text class="sb" x="928" y="131" fill="#d9d9d9" text-anchor="middle">articles/papers/&lt;title&gt;.md</text>
+
+  <!-- Stores -->
+  <rect x="448" y="200" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="448" y="200" width="160" height="64" rx="6" fill="#0a0a0a" fill-opacity="0.05" stroke="#404040" stroke-width="1"/>
+    <text class="nm" x="528" y="226" fill="#0a0a0a" text-anchor="middle">ChromaDB</text>
+    <text class="sb" x="528" y="243" fill="#595959" text-anchor="middle">vector store · docker</text>
+  <rect x="648" y="200" width="160" height="64" rx="6" fill="#ffffff"/>
+    <rect x="648" y="200" width="160" height="64" rx="6" fill="#0a0a0a" fill-opacity="0.05" stroke="#404040" stroke-width="1"/>
+    <text class="nm" x="728" y="226" fill="#0a0a0a" text-anchor="middle">Ollama</text>
+    <text class="sb" x="728" y="243" fill="#595959" text-anchor="middle">llama3 · local, on GPU</text>
+
+  <!-- Legend -->
+  <line x1="40" y1="316" x2="1000" y2="316" stroke="#0a0a0a" stroke-opacity="0.14" stroke-width="0.8"/>
+  <text class="ey" x="40" y="334" fill="#404040">LEGEND</text>
+  <rect x="40" y="343" width="14" height="10" rx="2" fill="#0a0a0a" stroke="#0a0a0a"/><text class="lg" x="60" y="352" fill="#404040">Focal: input and output</text>
+  <rect x="220" y="343" width="14" height="10" rx="2" fill="#ffffff" stroke="#0a0a0a"/><text class="lg" x="240" y="352" fill="#404040">Step</text>
+  <rect x="296" y="343" width="14" height="10" rx="2" fill="#0a0a0a" fill-opacity="0.05" stroke="#404040"/><text class="lg" x="316" y="352" fill="#404040">Local service (docker compose)</text>
+  <line x1="520" y1="348" x2="548" y2="348" stroke="#404040" stroke-width="1.2" marker-end="url(#llaprag-flow-arrow)"/><text class="lg" x="556" y="352" fill="#404040">Flow</text>
+  <line x1="624" y1="348" x2="652" y2="348" stroke="#404040" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#llaprag-flow-arrow)"/><text class="lg" x="660" y="352" fill="#404040">Reads or writes a store</text>
+</svg>
