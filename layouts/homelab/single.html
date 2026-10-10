@@ -2,7 +2,7 @@
   {{ .Title }} · {{ .Site.Title }}
 {{ end }}
 {{ define "content" }}
-{{- $units := site.Data.homelab -}}
+{{- $units := hugo.Data.homelab -}}
 {{- $sel := 5 -}}
 {{- $cur := index $units $sel -}}
 <div class="homelab" id="homelab">

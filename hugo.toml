@@ -1,7 +1,7 @@
 baseURL = "https://borjaip.github.io"
 title = "BorjaIP"
 theme = "hugo-coder"
-languageCode = "en"
+locale = "en"
 defaultContentLanguage = "en"
 enableEmoji = true
 enableRobotsTXT = true
@@ -97,7 +97,7 @@ url = "https://www.linkedin.com/in/birigoyen/"
 # type = "application/rss+xml"
 
 [languages.en]
-languageName = ":uk:"
+label = ":uk:"
 
 [[languages.en.menu.main]]
 name = "Projects"
