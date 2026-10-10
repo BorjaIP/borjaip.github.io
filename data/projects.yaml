@@ -11,6 +11,7 @@ now:
     url: https://github.com/BorjaIP/meridian
     desc: Framework for human-agent collaboration, in Human in the Loop and Agent Loop modes.
     tags: [Python, SDD, Agents]
+    tag: meridian   # posts tagged "meridian" are linked from this project
   - name: Budget App
     url: https://github.com/BorjaIP/budget-app
     desc: Local-first personal finance tracker that replaces spreadsheets. No cloud, no SaaS.

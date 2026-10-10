@@ -15,7 +15,7 @@
         <a class="pj-name" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}<span class="pj-arrow" aria-hidden="true"> ↗</span></a>
         <div class="pj-body">
           <p class="pj-desc">{{ .desc }}</p>
-          <p class="pj-tags">{{ delimit .tags " · " }}</p>
+          <p class="pj-tags">{{ delimit .tags " · " }}{{ with .tag }}{{ with site.GetPage (printf "/tags/%s" .) }}<a class="pj-posts" href="{{ .RelPermalink }}">posts →</a>{{ end }}{{ end }}</p>
         </div>
       </li>
       {{ end }}
@@ -30,7 +30,7 @@
       <li class="pj-card">
         <a class="pj-name" href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}<span class="pj-arrow" aria-hidden="true"> ↗</span></a>
         <p class="pj-desc">{{ .desc }}</p>
-        <p class="pj-tags">{{ delimit .tags " · " }}</p>
+        <p class="pj-tags">{{ delimit .tags " · " }}{{ with .tag }}{{ with site.GetPage (printf "/tags/%s" .) }}<a class="pj-posts" href="{{ .RelPermalink }}">posts →</a>{{ end }}{{ end }}</p>
       </li>
       {{ end }}
     </ul>
